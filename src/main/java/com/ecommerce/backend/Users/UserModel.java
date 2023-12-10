@@ -1,10 +1,13 @@
 package com.ecommerce.backend.Users;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -13,55 +16,33 @@ public class UserModel {
     @GeneratedValue
     @Column(name = "user_id")
     private Long userId;
-    @Column(name = "name")
-    private String name;
-
+    @Column(name = "firstName")
+    private String firstName;
+    @Column(name = "lastName")
+    private String lastName;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "role")
+    private String role;
+    @Column(name = "mobile")
+    private String mobile;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<AddressModel> address=new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "payment_information", joinColumns = @JoinColumn(name = "user_id"))
+    private List<PaymentInformationModel> paymentInformation = new ArrayList<>();
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<RatingsModel> ratings=new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<ReviewModel> reviews=new ArrayList<>();
+    public LocalDateTime createdAt;
+    public UserModel(){
 
-    @Column(name = "campus_id", unique = true)
-    private String campusID;
+    }
 
-    @Column(name = "hostel")
-    private String hostel;
-
-    @Column(name = "phone")
-    private String phone;
-    public String getName(){
-        return name;
-    }
-    public void setName(String name){
-        this.name=name;
-    }
-    public String getEmail(){
-        return email;
-    }
-    public void setEmail(String email){
-        this.email=email;
-    }
-    public String getCampusID(){
-        return campusID;
-    }
-    public void setCampusID(String campusID){
-        this.campusID=campusID;
-    }
-    public String getHostel(){
-        return hostel;
-    }
-    public void setHostel(String hostel){
-        this.hostel=hostel;
-    }
-    public String getPhone(){
-        return phone;
-    }
-    public void setPhone(String phone){
-        this.phone=phone;
-    }
-    public Long getUserId() {
-        return userId;
-    }
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
 }
