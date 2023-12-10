@@ -1,4 +1,4 @@
-## MySQL Docker image creation
+##  MySQL Docker image creation
 
 ```
 docker run -p 3307:3306 --name mysqldb -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.2.0
@@ -125,5 +125,15 @@ spring.jpa.hibernate.ddl-auto=update
 spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/spring
 spring.datasource.username=${MYSQL_USER:shubham}
 spring.datasource.password=${MYSQL_PASSWORD:shubham}
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+```
+## Normal Application Properties Without Docker
+ 
+```
+server.port=8080
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/spring
+spring.datasource.username=shubham
+spring.datasource.password=shubham
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
