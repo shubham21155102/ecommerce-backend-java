@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+//@RequestMapping("/api/v1/users")
 public class RestTest {
 
 private final UserServices userService;
@@ -42,5 +43,9 @@ private final UserServices userService;
     ) {
 
         return userService.registerUser(username, password, email, fname, lname, phone, cpassword);
+    }
+    @GetMapping("/users")
+    public String getAllUsers() {
+        return userService.getAllUsers();
     }
 }
