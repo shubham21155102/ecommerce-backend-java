@@ -205,3 +205,96 @@ public class RestTest {
 }
 
 ```
+## Now create a service for wrapping the Main java file that can be enlarged dut to previous code
+```java
+package com.ecommerce.backend.services;
+
+import com.ecommerce.backend.models.UserModel;
+import com.ecommerce.backend.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class UserServices implements UserServiceInterface{
+    private final UserRepository userRepository;
+    @Autowired
+    public UserServices(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    @Override
+    public String registerUser(String username, String password, String email, String fname, String lname, String phone, String cpassword) {
+        Optional<UserModel> existingUser = Optional.ofNullable(userRepository.findByEmail(email));
+        if (existingUser.isPresent()) {
+            return "Email already exists";
+        }
+        if (!password.equals(cpassword)) {
+            return "Password and Confirm Password do not match";
+        }
+
+        UserModel user = new UserModel();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setFirstName(fname);
+        user.setLastName(lname);
+        user.setPhone(phone);
+
+        userRepository.save(user);
+        return "Registration successful for: " + username;
+    }
+
+}
+
+```
+## Now Current Java file
+```java
+package com.ecommerce.backend;
+import com.ecommerce.backend.services.UserServices;
+import org.springframework.web.bind.annotation.*;
+
+
+
+@RestController
+public class RestTest {
+
+private final UserServices userService;
+
+    public RestTest(UserServices userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/t")
+    public String Home(){
+        return "test";
+    }
+    @GetMapping("/{id}")
+    public String Home2(@PathVariable String id){
+
+        return "{\"id\": \"" + id + "\"}";
+
+    }
+    @PostMapping("/login")
+    public String login(@RequestParam String username, @RequestParam String password) {
+
+        System.out.println("Received username: " + username);
+        System.out.println("Received password: " + password);
+        return username + " " + password;
+    }
+    @PostMapping("/register")
+    public String register(
+            @RequestParam String username,
+            @RequestParam String password,
+            @RequestParam String email,
+            @RequestParam String fname,
+            @RequestParam String lname,
+            @RequestParam String phone,
+            @RequestParam String cpassword
+    ) {
+
+        return userService.registerUser(username, password, email, fname, lname, phone, cpassword);
+    }
+}
+
+```
