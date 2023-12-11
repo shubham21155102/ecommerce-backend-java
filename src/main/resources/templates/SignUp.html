@@ -2,9 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amimated login page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #34495e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      width: 300px;
+      padding: 40px;
+      background: #191919;
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+    .box input[type="text"],
+    .box input[type="password"] {
+      border: 2px solid #3498db;
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      padding: 14px 10px;
+      width: 200px;
+      outline: none;
+      color: white;
+      border-radius: 20px;
+      transition: 0.25s;
+    }
+
+    .box input[type="text"]:hover,
+    .box input[type="password"]:hover {
+      border-color: #f13535;
+    }
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus {
+      width: 240px;
+      border-color: #2ecc71;
+    }
+    .box h1 {
+      color: white;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .box button[type="submit"] {
+      border: 2px solid #2ec712;
+      background: none;
+      display: block;
+      margin: 20px auto;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px 10px;
+      width: 200px;
+      outline: none;
+      color: white;
+      border-radius: 20px;
+      transition: background-color 0.25s;
+      cursor: pointer;
+    }
+    .box button[type="submit"]:hover {
+      background-color: #2ec712;
+    }
+  </style>
 </head>
 <body>
-$END$
+<form action="/register" method="POST" class="box">
+  <h1>Sign Up </h1>
+  <label>
+    <input type="text" name="fname" placeholder="First Name">
+  </label>
+  <label>
+    <input type="text" name="lname" placeholder="Last Name">
+  </label>
+  <label>
+  <label>
+    <input type="text" name="username" placeholder="Username">
+  </label>
+
+    <label>
+      <input type="text" name="email" placeholder="Email">
+    </label>
+  </label>
+  <label>
+    <input type="password" name="password"  placeholder="Password">
+  </label>
+    <label>
+        <input type="password" name="cpassword"  placeholder="Confirm Password">
+    </label>
+  <label >
+    <input type="text" name="phone"  placeholder="Phone">
+
+  </label>
+
+  <button type="submit">Sign Up </button>
+</form>
 </body>
 </html>
