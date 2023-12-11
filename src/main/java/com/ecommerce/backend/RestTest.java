@@ -1,4 +1,5 @@
 package com.ecommerce.backend;
+import com.ecommerce.backend.Utils.ResponseMessage;
 import com.ecommerce.backend.services.UserServices;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,14 +26,15 @@ private final UserServices userService;
 
     }
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
+    public ResponseMessage login(@RequestParam String username, @RequestParam String password) {
 
         System.out.println("Received username: " + username);
         System.out.println("Received password: " + password);
-        return username + " " + password;
+//        return username + " " + password;
+        return userService.logIn(username, password);
     }
     @PostMapping("/register")
-    public String register(
+    public ResponseMessage register(
             @RequestParam String username,
             @RequestParam String password,
             @RequestParam String email,
@@ -48,4 +50,5 @@ private final UserServices userService;
     public String getAllUsers() {
         return userService.getAllUsers();
     }
+
 }

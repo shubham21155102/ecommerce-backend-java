@@ -1,4 +1,4 @@
-package com.ecommerce.backend.Config;
+package com.ecommerce.backend.Utils;
 
 import com.google.gson.Gson;
 import org.springframework.context.annotation.Bean;
