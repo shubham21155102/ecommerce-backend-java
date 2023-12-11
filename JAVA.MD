@@ -298,3 +298,50 @@ private final UserServices userService;
 }
 
 ```
+## GSON dependency
+```xml
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+</dependency>
+```
+## GSON implementation
+```java
+package com.ecommerce.backend.Config;
+
+import com.google.gson.Gson;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class GSONConfig {
+    @Bean
+    public Gson gson() {
+        return new Gson();
+    }
+}
+
+```
+```java
+ @Override
+    public String getAllUsers(){
+        Iterable<UserModel> users = userRepository.findAll();
+        return gson.toJson(users);
+
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("[");
+//        for (UserModel user : users) {
+//            sb.append("{\"id\": \"" + user.getId() + "\",");
+//            sb.append("\"username\": \"" + user.getUsername() + "\",");
+//            sb.append("\"email\": \"" + user.getEmail() + "\",");
+//            sb.append("\"fname\": \"" + user.getFirstName() + "\",");
+//            sb.append("\"lname\": \"" + user.getLastName() + "\",");
+//            sb.append("\"phone\": \"" + user.getPhone() + "\"},");
+//        }
+//        sb.deleteCharAt(sb.length() - 1);
+//        sb.append("]");
+//        //Change this to return a JSON object
+//        return sb.toString();
+    }
+```
