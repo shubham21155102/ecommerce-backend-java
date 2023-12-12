@@ -1,5 +1,4 @@
 package com.ecommerce.backend.services;
-
 import com.ecommerce.backend.Utils.ResponseMessage;
 import com.ecommerce.backend.models.UserModel;
 import com.ecommerce.backend.repositories.UserRepository;
@@ -8,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.HashMap;
 import java.util.Optional;
 
 @Service
