@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @Service
@@ -74,5 +75,16 @@ public class UserServices implements UserServiceInterface{
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User does not exist");
         }
+    }
+    @Override
+    public ResponseMessage showAllUsers(){
+        Iterable<UserModel> users = userRepository.findAll();
+//        String all=gson.toJson(users);
+//        System.out.println(all);//[{"id":1,"username":"shubham21155102","password":"123456","firstName":"Shubham","lastName":"Kumar","email":"resoshubham2002@gmail.com","phone":"+916201060889"}]
+//        HashMap<String,String> map=new HashMap<>();
+//        map.put("users",all);
+//        System.out.println(gson.toJson(map));
+
+        return new ResponseMessage(gson.toJson(users), HttpStatus.OK);
     }
 }

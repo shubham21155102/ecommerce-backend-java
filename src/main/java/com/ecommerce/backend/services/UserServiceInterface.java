@@ -8,4 +8,6 @@ public interface UserServiceInterface {
     String getAllUsers();
 
     ResponseMessage logIn(String username, String password);
+
+    ResponseMessage showAllUsers();
 }

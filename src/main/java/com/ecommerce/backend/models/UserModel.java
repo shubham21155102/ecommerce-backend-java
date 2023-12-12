@@ -3,7 +3,7 @@ package com.ecommerce.backend.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "[user]")
 public class UserModel {
     @Id
     @Column(name = "id",nullable = false, updatable = false)
