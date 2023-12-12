@@ -2,9 +2,6 @@ package com.ecommerce.backend;
 import com.ecommerce.backend.Utils.ResponseMessage;
 import com.ecommerce.backend.services.UserServices;
 import org.springframework.web.bind.annotation.*;
-
-
-
 @RestController
 //@RequestMapping("/api/v1/users")
 public class RestTest {
