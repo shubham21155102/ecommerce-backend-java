@@ -138,3 +138,15 @@ spring.datasource.username=shubham
 spring.datasource.password=shubham
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
+## Connection Problem between Dockerised MYSQL  and Spring Boot Application
+```MYSQL
+docker pull mysql:8.2.0
+docker network ls
+docker network rm spring-sql
+docker network create springboot-mysql 
+docker run --name mysqldb --network springboot-mysql -e MYSQL_ROOT_PASSWORD=shubham -e MYSQL_DATABASE=spring -e MYSQL_USER=shubham -e MYSQL_PASSWORD=shubham -d mysql:8.2.0
+docker exec -it ec2 bash
+bash-4.4# mysql -u shubham -p shubham
+docker build -t springboot-mysql-java .
+docker run --network springboot-mysql --name springboot-container -p 8080:8080 springboot-mysql-java
+```
