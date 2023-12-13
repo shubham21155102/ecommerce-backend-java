@@ -3,6 +3,9 @@ import com.ecommerce.backend.Utils.ResponseMessage;
 import com.ecommerce.backend.services.UserServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
+
 @CrossOrigin(origins = {"http://localhost:3000", "https://ecommerce.shubhamiitbhu.in"})
 @RestController
 //@RequestMapping("/api/v1/users")
@@ -49,6 +52,10 @@ private final UserServices userService;
     @GetMapping("/users")
     public ResponseMessage getAllUsers() {
         return userService.showAllUsers();
+    }
+    @GetMapping("current-use")
+    public ResponseMessage getCurrentUser(Principal p){
+        return new ResponseMessage(p.getName(),HttpStatus.OK);
     }
 
 }
